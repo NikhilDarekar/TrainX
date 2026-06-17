@@ -1,45 +1,36 @@
 import React from 'react'
-import { useContext, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import AppContext from '../context/AppContext'
+import logo from '../assets/logo.png'
+import { NavLink } from 'react-router-dom'
 
-const Navbar = () =>  {
-    const navigate = useNavigate();
-
-    const { token, setToken, userData } = useContext(AppContext);
-
-    const [showMenu, setShowMenu] = useState(false);
-
-    const logout = () => {
-        setToken(false);
-        localStorage.removeItem("token");
-    };
+const Navbar = () => {
   return (
-    <div className="flex items-center justify-between text-sm py-4 mb- border-b border-gray-400">
-        <NavLink to="/">
-            <li className='py-1'>Home</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/">
-            <li className='py-1'>Programs</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/">
-            <li className='py-1'>Trainers</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/">
-            <li className='py-1'>Membership</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/">
-            <li className='py-1'>Why us?</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/">
-            <li className='py-1'>Contact</li>
-            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
+    <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
+        <img src={logo.png} alt="" />
+        <ul>
+            <NavLink >
+                <li>Home</li>
+                <hr />
+            </NavLink>
+            <NavLink >
+                <li>Trainers</li>
+                <hr />
+            </NavLink>
+            <NavLink >
+                <li>Membership</li>
+                <hr />
+            </NavLink>
+            <NavLink >
+                <li>About </li>
+                <hr />
+            </NavLink>
+            <NavLink >
+                <li>Contact</li>
+                <hr />
+            </NavLink>
+        </ul>
+        <div>
+            <button>Login</button>
+        </div>
     </div>
   )
 }
