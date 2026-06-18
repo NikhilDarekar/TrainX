@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #5f6FFF;
+}
+
+/* Tooltip setup */
+.nav-item {
+  @apply relative;
+}
+
+.nav-item .popup {
+  @apply absolute bottom-full mb-2 px-2 py-1 text-xs rounded bg-black text-white opacity-0 transition-opacity duration-200;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover .popup {
+  @apply opacity-100;
+}
