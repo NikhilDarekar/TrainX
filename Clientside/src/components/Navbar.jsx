@@ -16,8 +16,8 @@ const Navbar = () => {
     const [token, setToken] = useState(true)
 
   return (
-    <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
-        <img className='w-44 cursor-pointer' src={logo} alt="" />
+    <div className='flex items-center justify-between text-sm py-1 mb-5 border-b border-b-gray-400'>
+        <img className='w-25 cursor-pointer  ' src={logo} alt="" />
         <ul className='hidden md:flex items-start gap-5 font-medium'>
             <NavLink to='/'>
                 <li className='py-1'>HOME</li>
@@ -55,8 +55,8 @@ const Navbar = () => {
                         <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
                             <p onClick={()=>navigate('my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
                             <p onClick={()=>navigate('my-membership')} className='hover:text-black cursor-pointer'>My Membership</p>
-                            <p className='hover:text-black cursor-pointer'>Logout</p>
-                        </div>
+                            <p onClick={()=>setToken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+                        </div>  
                     </div>
                 </div>
                 :<button onClick={()=>navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hiden md:block'>Login</button>
