@@ -1,3 +1,4 @@
+
 export default {
   content: [
     "./index.html",
@@ -6,8 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary':"#5f6FFF"
-      }
+        primary: "#5f6FFF",
+      },
+      fontFamily: {
+        bebas: ['"Bebas Neue"', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        josefin: ['"Josefin Sans"', 'sans-serif'],
+        ranade: ['Ranade', 'sans-serif'], // only works if locally added
+      },
     },
   },
   plugins: [],
