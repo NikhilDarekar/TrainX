@@ -11,7 +11,7 @@ import Navbar from './components/Navbar.jsx'
 
 const App = () => {
   return (
-    <div className="mx-4 sm:mx-[10%]">
+    <div className="w-full min-h-screen">
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}/>

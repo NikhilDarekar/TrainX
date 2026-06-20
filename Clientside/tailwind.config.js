@@ -14,6 +14,7 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
         josefin: ['"Josefin Sans"', 'sans-serif'],
         ranade: ['Ranade', 'sans-serif'], // only works if locally added
+        outfit: ['Outfit', 'sans-serif'],
       },
     },
   },

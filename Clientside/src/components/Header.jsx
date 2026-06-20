@@ -85,7 +85,7 @@ const Header = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden rounded-lg">
+    <section className="relative min-h-screen w-full overflow-hidden ">  /*ronded-lg removed*/
       {/* Parallax Background */}
       <div
         className="absolute inset-0 scale-110"
@@ -102,9 +102,13 @@ const Header = () => {
       <div className="absolute inset-0 bg-black/55" />
 
       {/* Content */}
+      {/* <div className="relative z-10 min-h-screen flex items-center"> */}
       <div className="relative z-10 min-h-screen flex items-center">
-        <div className="px-6 md:px-10 lg:px-20 max-w-3xl">
-          <h1 className="font-josefin text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight">
+        {/* <div className="w-full px-6 sm:px-8 md:px-12 lg:px-20 xl:px-28"> changed to max-w-5xl */}
+        <div className="max-w-5xl">
+        {/* <div className="px-6 md:px-10 lg:px-20 max-w-3xl"> */}
+        <h1 className="font-josefin text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-white font-bold leading-[0.95]">
+          {/* <h1 className="font-josefin text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight"> */}
             Build your <br />
             Dream Physique
           </h1>
