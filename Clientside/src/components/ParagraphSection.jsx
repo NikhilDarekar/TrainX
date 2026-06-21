@@ -1,15 +1,24 @@
 import React from "react";
+import { motion } from "framer-motion";
+
 
 const ParagraphSection = () => {
   return (
-    <section className="bg-[#f5f5f5] py-24 md:py-40">
+    // <section className="bg-[#f5f5f5] py-24 md:py-40">
+    <section className="bg-white py-24 md:py-40">
       <div id='trainers' className="max-w-5xl mx-auto text-center px-6">
 
-        <p className="font-outfit text-2xl md:text-3xl lg:text-4xl font-light leading-[1.7] tracking-tight text-gray-800">
+        <motion.p
+          className="font-outfit text-2xl md:text-3xl lg:text-4xl font-light leading-[1.7] tracking-tight text-gray-800"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           Your goals are closer than you think. With expert guidance, personalized training programs, and a community that supports you every step of the way, Train-X is where strength, confidence, and transformation come together.
-        </p>
+        </motion.p>
 
-        <button
+        <motion.button
           className="
           mt-16
           bg-white
@@ -24,9 +33,16 @@ const ParagraphSection = () => {
           hover:bg-black
           hover:text-white
           "
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
           >
           Start Your Journey
-        </button>
+        </motion.button>
 
       </div>
     </section>
