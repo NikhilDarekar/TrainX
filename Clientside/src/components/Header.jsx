@@ -37,17 +37,41 @@
 //       />
 
 //       {/* Overlay */}
-//       <div className="absolute inset-0 bg-black/55" />
+//       <div
+//         className="
+//         absolute
+//         inset-0
+//         bg-gradient-to-r
+//         from-black/80
+//         via-black/50
+//         to-black/20
+//         "
+//         />
 
 //       {/* Content */}
 //       {/* <div className="relative z-10 min-h-screen flex items-center"> */}
 //       <div className="relative z-10 min-h-screen flex items-center">
 //         {/* <div className="w-full px-6 sm:px-8 md:px-12 lg:px-20 xl:px-28"> changed to max-w-5xl */}
-//         <div className="max-w-5xl">
+//         {/* <div className="max-w-5xl"> */}
+//         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-20">
 //         {/* <div className="px-6 md:px-10 lg:px-20 max-w-3xl"> */}
-//         <h1 className="font-josefin text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-white font-bold leading-[0.95]">
+//         <h1
+//           className="
+//           font-josefin
+//           font-extrabold
+//           tracking-tight
+//           leading-[0.9]
+//           text-white
+//           text-6xl
+//           sm:text-7xl
+//           md:text-8xl
+//           lg:text-[7rem]
+//           xl:text-[8rem]
+//           max-w-4xl
+//           "
+//           >
 //           {/* <h1 className="font-josefin text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight"> */}
-//             Build your <br />
+//             Build Your <br />
 //             Dream Physique
 //           </h1>
 
@@ -92,7 +116,7 @@
 //             }}
 //           >
 //             <span className="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-700 font-medium mt-8 hover:scale-105 hover:text-black transition-all duration-300">
-//               Get Membership
+//               Start Your Journey
 //               <img className="w-3" src={arrow_icon} alt="Arrow" />
 //             </span>
 //           </button>
@@ -112,288 +136,182 @@
 // export default Header;
 
 
-// import React from "react";
-// import hero1 from "../assets/hero1.png";
-// import hero2 from "../assets/hero2.png";
-// import hero3 from "../assets/hero3.png";
-
-// const Header = () => {
-//   return (
-//     <section className="relative h-screen w-full overflow-hidden">
-
-//       {/* ==================== Background Images ==================== */}
-//       <div className="absolute inset-0 z-0 flex">
-
-//         {/* tablets */}
-//         <div className="absolute inset-0 z-0 hidden md:flex lg:hidden">
-//           {/* left image */}
-//           <div>
-//             <img src={hero1} alt="hero1" className="" />
-//           </div>
-//           {/* right image */}
-//           <div>
-//             <img src={hero2} alt="hero2" className="" />
-//           </div>
-//         </div>
-//         {/* mobiles */}
-
-
-//         {/* Desktop  */}
-//         {/* Left Image */}
-//         <div className="w-1/3 h-full overflow-hidden">
-//           <img
-//             src={hero1}
-//             alt="Hero Left"
-//             className="w-full h-full object-cover scale-105 select-none"
-//             draggable="false"
-//           />
-//         </div>
-
-//         {/* Middle Image */}
-//         <div className="w-1/3 h-full overflow-hidden">
-//           <img
-//             src={hero2}
-//             alt="Hero Center"
-//             className="w-full h-full object-cover scale-105 select-none"
-//             draggable="false"
-//           />
-//         </div>
-
-//         {/* Right Image */}
-//         <div className="w-1/3 h-full overflow-hidden">
-//           <img
-//             src={hero3}
-//             alt="Hero Right"
-//             className="w-full h-full object-cover scale-105 select-none"
-//             draggable="false"
-//           />
-//         </div>
-
-//       </div>
-
-//       {/* ==================== Dark Overlay ==================== */}
-//       <div className="absolute inset-0 z-10 bg-black/40"></div>
-
-//       {/* ==================== Hero Content ==================== */}
-//       <div className="absolute inset-0 z-20 flex items-center justify-center">
-
-//         {/* We'll add the heading, subtitle and buttons here */}
-
-//       </div>
-
-//     </section>
-//   );
-// };
-
-// export default Header;
-
-
-
-
-
-
-
-
-
 
 
 import React, { useEffect, useState } from "react";
-import hero1 from "../assets/hero1.png";
-import hero2 from "../assets/hero2.png";
-import hero3 from "../assets/hero3.png";
+import { TypeAnimation } from "react-type-animation";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import arrow_icon from "../assets/arrow-icon.png";
+import group_profiles from "../assets/group_profiles.png";
+import parallax from "../assets/parallax.jpg";
 
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
 
 const Header = () => {
-
+  const navigate = useNavigate();
   const [offsetY, setOffsetY] = useState(0);
 
-useEffect(() => {
-  const handleScroll = () => {
-    setOffsetY(window.scrollY);
-  };
-
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
+  useEffect(() => {
+    const handleScroll = () => setOffsetY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
   return (
-    <section className="relative h-screen w-full overflow-hidden opacity-0 animate-fadeIn">
+    <section className="relative min-h-screen w-full overflow-hidden">
 
-      {/* ================= MOBILE ================= */}
+      {/* Background */}
+      <div
+        className="absolute inset-0 scale-110"
+        style={{
+          backgroundImage: `url(${parallax})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform: `translateY(${offsetY * 0.2}px) scale(1.15)`,
+          willChange: "transform",
+        }}
+      />
 
-      <div className="absolute inset-0 md:hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.92),rgba(0,0,0,0.65),rgba(0,0,0,0.2))]" />
 
-        <img
-          src={hero2}
-          alt=""
-          className="w-full h-full object-cover scale-110"
-          draggable="false"
-        />
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex items-center">
 
-      </div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-20"
+        >
 
-      {/* ================= TABLET ================= */}
-
-      <div className="absolute inset-0 hidden md:flex lg:hidden">
-
-        <div className="w-1/2 h-full overflow-hidden">
-
-          <img
-            src={hero1}
-            alt=""
-            className="w-full h-full object-cover scale-105"
-            draggable="false"
-          />
-
-        </div>
-
-        <div className="w-1/2 h-full overflow-hidden">
-
-          <img
-            src={hero2}
-            alt=""
-            className="w-full h-full object-cover scale-105"
-            draggable="false"
-          />
-
-        </div>
-
-      </div>
-
-      {/* ================= DESKTOP ================= */}
-
-      <div className="absolute inset-0 hidden lg:flex">
-
-        {/* Left */}
-
-        <div className="w-1/3 h-full overflow-hidden">
-
-          <img
-            src={hero1}
-            alt=""
-            className="w-full h-full object-cover scale-105"
-            draggable="false"
-          />
-
-        </div>
-
-        {/* Middle */}
-
-        <div className="w-1/3 h-full overflow-hidden">
-
-          <img
-            src={hero2}
-            alt=""
-            draggable="false"
-            style={{
-              transform: `translateY(${-offsetY * 0.08}px)`,
-              willChange: "transform",
-            }}
-            className="
-              w-full
-              h-[130%]
-              object-cover
-              object-center
-              scale-105
-              select-none
-            "
-          />
-
-        </div>
-
-        {/* Right */}
-
-        <div className="w-1/3 h-full overflow-hidden">
-
-          <img
-            src={hero3}
-            alt=""
-            className="w-full h-full object-cover scale-105"
-            draggable="false"
-          />
-
-        </div>
-
-      </div>
-
-      {/* ================= Overlay ================= */}
-
-      <div className="absolute inset-0 bg-black/55 z-10"></div>
-
-      {/* ================= Hero Content ================= */}
-
-      <div className="absolute inset-0 z-20 flex items-center justify-center">
-
-        <div className="text-center text-white px-6 max-w-5xl">
-
-          <p className="uppercase tracking-[8px] text-sm md:text-base mb-6 font-light">
-
-            TRAIN-X
-
-          </p>
-
-          <h1 className="font-bold leading-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl translate-y-12
-            opacity-0
-            animate-title">
-
-            Build Your
-
-            <br />
-
-            Dream Physique
-
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,  
-              delay: 0.6,
-              ease: "easeOut",
-            }}
-            className="mt-18 text-lg md:text-xl font-light text-gray-200 max-w-2xl mx-auto"
+          {/* Badge */}
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white text-sm"
           >
-            Personalized fitness coaching designed to help you lose fat,
-            build muscle, and become the strongest version of yourself.
+            🔥 Trusted by 1500+ Fitness Members
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h1
+            variants={item}
+            className="
+              font-josefin
+              font-extrabold
+              tracking-tight
+              leading-[1.05]
+              text-white
+              text-5xl
+              sm:text-6xl
+              md:text-7xl
+              lg:text-7xl
+              xl:text-8xl
+              max-w-2xl
+            "
+          >
+            Build Your <br /> Dream Physique
+          </motion.h1>
+
+          {/* Animated Text */}
+          <motion.div
+            variants={item}
+            className="mt-6 flex items-center gap-3 text-2xl md:text-4xl font-bold"
+          >
+            <span className="text-gray-300">Train for</span>
+
+            <span className="text-yellow-400">
+              <TypeAnimation
+                sequence={[
+                  "Fat Loss",
+                  2000,
+                  "Muscle Gain",
+                  2000,
+                  "Strength",
+                  2000,
+                  "Cardio",
+                  2000,
+                  "Athletic Performance",
+                  2000,
+                ]}
+                speed={50}
+                repeat={Infinity}
+              />
+            </span>
+          </motion.div>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={item}
+            className="mt-6 max-w-xl text-gray-300 text-lg leading-relaxed"
+          >
+            Personalized coaching, structured workouts, and nutrition plans designed
+            to help you transform your body and stay consistent long-term.
           </motion.p>
 
-          <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.9,
-                ease: "easeOut",
+          {/* CTA */}
+          <motion.div
+            variants={item}
+            className="mt-10 flex flex-col sm:flex-row gap-4"
+          >
+            <button
+              onClick={() => {
+                navigate("/membership");
+                window.scrollTo(0, 0);
               }}
-              className="bg-white text-black mt-10 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              className="group inline-flex items-center justify-center gap-3 bg-yellow-400 text-black px-8 py-4 rounded-full font-semibold shadow-[0_0_30px_rgba(250,204,21,0.25)] hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(250,204,21,0.45)] transition-all duration-300"
             >
-              Get Membership
-            </motion.button>
+              Start Your Journey
+              <img
+                src={arrow_icon}
+                alt="arrow"
+                className="w-3 transition-transform group-hover:translate-x-1"
+              />
+            </button>
 
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 1.1,
-                ease: "easeOut",
-              }}
-              className="border border-white px-8 py-4 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-105"
-            >
-              Explore Programs
-            </motion.button>
+            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/30 text-white hover:bg-white/10 transition-all duration-300">
+              Watch Programs
+            </button>
+          </motion.div>
 
-        </div>
+          {/* Social Proof */}
+          <motion.div
+            variants={item}
+            className="mt-10 flex items-center gap-4"
+          >
+            <img src={group_profiles} alt="users" className="w-24" />
+            <div>
+              <p className="text-white font-semibold">1,500+ Active Members</p>
+              <p className="text-gray-400 text-sm">
+                Rated 4.9/5 by the community
+              </p>
+            </div>
+          </motion.div>
 
+          {/* Scroll Hint */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-300 text-xs animate-bounce">
+            ↓ Scroll
+          </div>
+
+        </motion.div>
       </div>
-
     </section>
   );
 };
