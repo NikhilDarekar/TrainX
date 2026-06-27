@@ -111,6 +111,8 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import profile from "../assets/profile-pic.jpg";
 import dropdown_icon from "../assets/dropdown-icon.png";
+import { FiMenu } from "react-icons/fi";
+import { Fix } from 'react-icons/fi'
 
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -131,6 +133,8 @@ const navItems = [
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  const [showMenu, setShowMenu] = useState(false)
   const [token, setToken] = useState(true);
 
   return (
@@ -212,7 +216,14 @@ const Navbar = () => {
             Login
           </button>
         )}
-
+        <FiMenu onClick={()=>setShowMenu(true)} className="w-6 h-6 text-black" className='w-6 md:hidden'/>
+          {/* mobile menu */}
+        <div>
+          <div>
+            <img src={logo} alt="" />
+            <FiMenu />
+          </div>
+        </div>
       </div>
     </div>
   );
