@@ -112,7 +112,7 @@ import logo from "../assets/logo.png";
 import profile from "../assets/profile-pic.jpg";
 import dropdown_icon from "../assets/dropdown-icon.png";
 import { FiMenu } from "react-icons/fi";
-import { Fix } from 'react-icons/fi'
+import { FiX } from 'react-icons/fi' 
 
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -138,13 +138,19 @@ const Navbar = () => {
   const [token, setToken] = useState(true);
 
   return (
-    <div className="flex items-center justify-between text-sm py-2 mb-5 border-b border-gray-300 px-6">
+    <>
+    <div className="flex items-center justify-between h-20 px-8 border-b border-gray-200 bg-white">
 
       {/* LOGO */}
-      <img className="w-28 cursor-pointer" src={logo} alt="logo" />
-
+      <img
+        src={logo}
+        alt="logo"
+        className="w-16 md:w-20 cursor-pointer"
+        onClick={() => navigate("/")}
+      />
       {/* NAV LINKS */}
-      <ul className="hidden md:flex items-center gap-10 font-medium">
+      <ul className="hidden md:flex items-center gap-8 lg:gap-10 font-medium">
+
 
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -216,17 +222,55 @@ const Navbar = () => {
             Login
           </button>
         )}
-        <FiMenu onClick={()=>setShowMenu(true)} className="w-6 h-6 text-black" className='w-6 md:hidden'/>
-          {/* mobile menu */}
-        <div>
-          <div>
-            <img src={logo} alt="" />
-            <FiMenu />
-          </div>
-        </div>
+        
+                <FiMenu
+          onClick={() => setShowMenu(true)}
+          className="text-3xl cursor-pointer md:hidden"
+        />
       </div>
     </div>
-  );
+
+    {/* Mobile Menu */}
+    {showMenu && (
+      <div className="fixed inset-0 bg-white z-50 md:hidden">
+        <div className="flex justify-between items-center p-5 border-b">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-16 cursor-pointer"
+            onClick={() => {
+              navigate("/");
+              setShowMenu(false);
+            }}
+          />
+
+          <FiX
+            className="text-3xl cursor-pointer"
+            onClick={() => setShowMenu(false)}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                onClick={() => setShowMenu(false)}
+                className="flex items-center gap-3 px-6 py-4 border-b hover:bg-gray-100"
+              >
+                <Icon size={20} />
+                <span>{item.name}</span>
+              </NavLink>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </>
+);
 };
 
 export default Navbar;
