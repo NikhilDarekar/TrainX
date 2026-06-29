@@ -15,6 +15,7 @@ export const trainers = [
     experience: "5+",
     clients: "1K+",
     rating: "4.9",
+    specialities: ['Strength', 'Nutrition', 'HIIT'],
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ export const trainers = [
     experience: "7+",
     clients: "2K+",
     rating: "4.8",
+    specialities: ["Bodybuilding", "Powerlifting", "Strength"],
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const trainers = [
     experience: "6+",
     clients: "1.5K+",
     rating: "5.0",
+    specialities: ['Fat Loss', 'Cardio', 'Diet'],
   },
   {
     id: 4,
@@ -42,6 +45,7 @@ export const trainers = [
     experience: "8+",
     clients: "3K+",
     rating: "4.9",
+    specialities: ['Strength', 'Nutrition'],
   },
   {
     id: 5,
@@ -51,6 +55,7 @@ export const trainers = [
     experience: "5+",
     clients: "1K+",
     rating: "4.9",
+    specialities: ["Bodybuilding", "Powerlifting", "Strength"],
   },
   {
     id: 6,
@@ -60,6 +65,7 @@ export const trainers = [
     experience: "7+",
     clients: "2K+",
     rating: "4.8",
+    specialities: ['Fat Loss', 'Cardio', 'Diet'],
   },
   {
     id: 7,
@@ -69,5 +75,6 @@ export const trainers = [
     experience: "6+",
     clients: "1.5K+",
     rating: "5.0",
+    specialities: ['Strength', 'Nutrition'],
   },
 ];
