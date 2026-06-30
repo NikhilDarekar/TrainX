@@ -67,3 +67,12 @@ animation:title .9s ease forwards;
 animation-delay:.3s;
 
 }
+
+box-shadow:
+0 25px 80px rgba(0,0,0,.55),
+0 0 50px rgba(255,120,0,.08);
+
+background:
+radial-gradient(circle at top left,#ff7a1815,transparent 30%),
+radial-gradient(circle at bottom right,#ff7a1810,transparent 35%),
+#0B1220;

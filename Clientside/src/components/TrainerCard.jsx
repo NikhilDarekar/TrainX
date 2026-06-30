@@ -8,213 +8,147 @@ const TrainerCard = ({ trainer }) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      whileHover={{ y: -12, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 200, damping: 18 }}
       className="
-      group
-      relative
-      overflow-hidden
-      rounded-[32px]
-      bg-[#111827]
-      shadow-lg
-      transition-all
-      duration-500
-      hover:-translate-y-3
-      hover:shadow-[0_20px_60px_rgba(249,115,22,0.25)]
+        group relative overflow-hidden rounded-[32px]
+        bg-white/[0.04] backdrop-blur-3xl
+        border border-white/10
+        shadow-[0_25px_80px_rgba(0,0,0,0.55)]
+        text-white
       "
     >
-      {/* Image Section */}
-      <div className="relative h-[360px] overflow-hidden group">
+      {/* ORANGE AMBIENT GLOW */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-orange-500/20 blur-[120px]" />
+
+      {/* IMAGE SECTION */}
+      <div className="relative h-100 overflow-hidden">
         <img
           src={trainer.image}
           alt={trainer.name}
           className="
-          w-full
-          h-full
-          object-cover
-          transition-transform
-          duration-700
-          group-hover:scale-110
+            w-full h-full object-cover object-top
+            transition duration-700
+            group-hover:scale-105 group-hover:rotate-1
           "
         />
 
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-black/30 to-transparent" /> */}
-      <>
-        {/* Dark Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-black/20 to-transparent" />
+        {/* DARK OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220] via-black/20 to-transparent" />
 
-        {/* Top Badge */}
-        <div className="absolute top-5 left-5">
-          <span className="relative inline-flex items-center gap-2
-            px-4 py-2
-            rounded-full 
-            text-xs font-semibold text-white
-            bg-white/10
-            backdrop-blur-md
+        {/* ELITE BADGE */}
+        <div className="absolute top-6 left-6">
+          <div className="
+            relative px-4 py-2 rounded-full
+            bg-white/10 backdrop-blur-xl
             border border-white/20
-            shadow-lg
-            overflow-hidden">
+            text-xs font-semibold
+            overflow-hidden
+          ">
+            <div className="absolute inset-0 bg-orange-500/20 blur-xl animate-pulse" />
 
-              <span className="
-                absolute inset-0
-                bg-orange-500/30
-                blur-xl
-                animate-pulse" />
-
-                <span className="relative flex h-2 w-2">
-                  <span className="animante-ping absolute-hidden inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"/>
-                </span>
-              🔥 Top Rated
-          </span>
+            <span className="relative flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
+              </span>
+              Elite Coach
+            </span>
+          </div>
         </div>
 
-        <div className="absolute bottom-4 left-5">
-          <p className="text-white/70 text-xs">
-            Tap below to view profile
-          </p>
-        </div>
-      </>
-
+        {/* FOOTER HINT */}
+        {/* <div className="absolute bottom-5 left-6 text-xs text-white/60">
+          Tap to explore profile
+        </div> */}
       </div>
 
-      {/* Content */}
-      <div className="p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-white text-2xl font-semibold">
-              {trainer.name}
-            </h3>
+      {/* CONTENT */}
+      <div className="p-6 space-y-4">
 
-            <p className="text-gray-400 mt-1">
-              {trainer.role}
-            </p>
+        {/* NAME + ROLE */}
+        <div>
+          <h2 className="text-4xl font-bold tracking-tight text-gray-700 ">
+            {trainer.name}
+          </h2>
+          <p className="text-gray-400 mt-1 tracking-wide">
+            {trainer.role}
+          </p>
+        </div>
 
-          </div>
+        {/* SKILLS */}
+        <div className="flex flex-wrap gap-2">
+          {trainer.specialities.map((s) => (
+            <span
+              key={s}
+              className="
+                px-3 py-1 text-xs
+                rounded-full
+                bg-white/5 border border-white/10
+                text-white/70 backdrop-blur-xl
+              "
+            >
+              {s}
+            </span>
+          ))}
+        </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            {trainer.specialities.map((specialty) => (
-              <span
-                key={specialty}
-                className="
-                  rounded-full
-                  border
-                  border-orange-500/30
-                  bg-orange-500/10
-                  px-3
-                  py-1
-                  text-xs
-                  font-medium
-                  text-orange-400
-                "
-              >
-                {specialty}
-              </span>
-            ))}
-          </div>
-
-          <button
-            className="
-            h-12
-            w-12
-            rounded-full
-            bg-white/10
-            backdrop-blur-md
-            border
-            border-white/20
-            flex
-            items-center
-            justify-center
-            text-white
-            transition
-            duration-300
-            hover:scale-110
-            "
-          >
-            <Phone size={18} />
+        {/* PHONE BUTTON */}
+        <div className="absolute top-125 right-6">
+          <button className="
+            h-11 w-11 rounded-full
+            bg-black backdrop-blur-xl 
+            border border-white/20
+            flex items-center justify-center
+            hover:scale-110 transition
+          ">
+            <Phone size={16} />
           </button>
         </div>
 
-        {/* Stats */}
+        {/* STATS */}
         <div className="
-          mt-6
-          grid
-          grid-cols-3
-          rounded-2xl
-          bg-white/5
-          border
-          border-white/10
-          overflow-hidden
+          grid grid-cols-3 gap-3
         ">
-          
-          {/* Experience */}
-          <div className="py-4 text-center border-r border-white/10">
-            <div className="text-orange-400 text-lg font-bold">
-              {trainer.experience}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+            <div className="text-orange-400 text-xl font-bold">
+              {trainer.experience}+
             </div>
-            <p className="text-gray-400 text-xs mt-1">
-              Years
-            </p>
+            <div className="text-xs text-gray-400">Years</div>
           </div>
 
-          {/* Clients */}
-          <div className="py-4 text-center border-r border-white/10">
-            <div className="text-orange-400 text-lg font-bold">
-              {trainer.clients}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+            <div className="text-orange-400 text-xl font-bold">
+              {trainer.clients}+
             </div>
-            <p className="text-gray-400 text-xs mt-1">
-              Clients
-            </p>
+            <div className="text-xs text-gray-400">Clients</div>
           </div>
 
-          {/* Rating */}
-          <div className="py-4 text-center">
-            <div className="flex items-center justify-center gap-1 text-orange-400 font-bold">
-              {trainer.rating}
-              <span className="text-yellow-400">★</span>
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+            <div className="text-orange-400 text-xl font-bold flex items-center justify-center gap-1">
+              {trainer.rating} <span className="text-yellow-400">★</span>
             </div>
-            <p className="text-gray-400 text-xs mt-1">
-              Rating
-            </p>
+            <div className="text-xs text-gray-400">Rating</div>
           </div>
-
         </div>
 
-        {/* Button */}
-        <button
-          className="
-            mt-6
-            w-full
-            relative
-            overflow-hidden
-            rounded-full
-            py-4
-            font-semibold
-            text-white
-            bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600
-            shadow-lg
-            shadow-orange-500/30
-            transition-all
-            duration-500
-            hover:scale-[1.03]
-            hover:shadow-orange-500/50
-            active:scale-95
-          "
-        >
-          {/* Shine Effect */}
+        {/* CTA BUTTON */}
+        <motion.button className="
+          mt-16 bg-white text-black border border-black px-10 py-4 font-medium transition-all duration-300 hover:bg-black hover:text-white"
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+          {/* SHINE */}
           <span className="
-            absolute inset-0 
-            bg-white/20 
-            translate-x-[-100%] 
-            skew-x-12 
-            group-hover:translate-x-[200%] 
-            transition-transform 
-            duration-700
+            absolute inset-0
+            bg-white/20 skew-x-12
+            -translate-x-full
+            group-hover:translate-x-[200%]
+            transition duration-700
           " />
 
           <span className="relative z-10">
             Book Session
           </span>
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );
